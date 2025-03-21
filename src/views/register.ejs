@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="/style1.css">
+    <style>
+        .form{
+            height: 630px;
+        }
+    </style>
+
+</head>
+<body style="background:url('/images/register.jpeg');background-position: center; background-size: cover; background-repeat: no-repeat;"> 
+<form action="/register" method="post" name="f1">
+   
+    <div class="form">
+        <% if (errorMessage) { %>
+            <div class="error"><%= errorMessage %></div>
+        <% } %>
+        <br>
+        <h1>Registration Form</h1><br>
+        <label>Name :</label>
+        <input type="text" name="Name" placeholder="Name Here" id="Name">
+        <label>Mobile_no :</label>
+        <input type="tel" name="Mobile_no" size="10" placeholder="XXXXXXXXXX" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required><br>
+        <label>Wedding_Address:</label>
+        <input type="text" name="Wedding_Address" placeholder="Address" ><br>
+        <label>Wedding_date:</label>
+        <input type="Date" name="Wedding_date" placeholder=" Enter the Date here"><br>
+        <br>
+        <br>
+        <input type="submit" name="register" value="REGISTER"><br>
+        <a href="/index"><input type ="button" name="" value="Back to Home"></a>
+        
+    </div>
+
+    <div>
+        <p id="length"></p>
+    </div>
+
+
+    
+   </form>
+</body>
+</html>
