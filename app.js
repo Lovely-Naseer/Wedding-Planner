@@ -27,6 +27,16 @@ mongoose.connect(process.env.MONGO_URL, {
 app.set('views', path.join(__dirname, 'src', 'views')); // Updated for cross-platform compatibility
 app.set('view engine', 'ejs');
 
+// Logout code
+app.use(
+  session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
+
 
 // Use routes from external file
 app.use('/', indexRoutes);
@@ -85,17 +95,39 @@ app.post('/signup', async (req, res) => {
 
 // Register page
 app.post('/register', async (req, res) => {
-  const { Name, Mobile_no, Wedding_Address, Wedding_date } = req.body;
+  const { 
+    Name, 
+    Mobile_no, 
+    Wedding_Address, 
+    Wedding_date_From, 
+    Wedding_date_To, 
+    Venue, 
+    CardDesign, 
+    Service, 
+    No_of_Guests 
+  } = req.body;
 
-  const newRegister = new Register({ Name, Mobile_no, Wedding_Address, Wedding_date });
+  const newRegister = new Register({
+    Name,
+    Mobile_no,
+    Wedding_Address,
+    Wedding_date_From,
+    Wedding_date_To,
+    Venue,
+    CardDesign,
+    Service,
+    No_of_Guests
+  });
+
   try {
     await newRegister.save();
-    return res.redirect('/index'); // Ensure no further code runs
+    return res.redirect('/index');  // redirect after success
   } catch (error) {
-    console.error(error);
+    console.error("❌ Error:", error.message);
     return res.render('register', { errorMessage: 'Not Registered' });
   }
 });
+
 
 // Login Page
 app.post('/login', async (req, res) => {
@@ -125,15 +157,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Logout code
-app.use(
-  session({
-    secret: 'your-secret-key',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false },
-  })
-);
 
 app.get('/logout', (req, res) => {
   if (!req.session) {

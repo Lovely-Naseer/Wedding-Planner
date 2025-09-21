@@ -19,7 +19,7 @@
 }
 
 html {
-    font-size: 56%;
+    font-size: 70%;
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
@@ -108,6 +108,126 @@ section .login{
     font-weight: 600;
     color: var(--clr4);
 }
+/*--model--*/
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 80px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+  position: relative;       /* allow absolute children like close button */
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 5rem;
+  font-weight: bold;
+  color: #000000;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #ff1900; /* red on hover */
+}
+
+/* Center and style heading */
+.modal-content h2 {
+  text-align: center;
+  font-size: 2.8rem; /* medium size */
+  margin-bottom: 20px; /* space between heading and images */
+}
+
+.modal-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* default: 3 per row */
+  gap: 20px;
+  justify-items: center;
+}
+
+/* Image styling */
+.modal-gallery img {
+  width: 100%;
+  max-width: 200px; /* control max image size */
+  height: 200px; /* same height for all */
+  object-fit: cover; /* crop neatly */
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+
+}
+.cake-item {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  overflow: hidden;         /* keep overlay inside */
+  border-radius: 8px;       /* apply same radius to container */
+}
+
+.cake-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;       /* match container radius */
+  transition: transform 0.3s ease;
+}
+
+.cake-item:hover img {
+  transform: scale(1.05);
+  filter: brightness(70%);
+}
+
+.cake-item .price {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 82%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cake-item:hover .price {
+  opacity: 1;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 992px) {
+  .modal-gallery {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .modal-gallery {
+    grid-template-columns: 1fr; /* 1 per row on small screens */
+  }
+}
+
+
+
+
+
 
 
 /*----------------------header section---------------*/
@@ -163,7 +283,7 @@ span {
 
 
 .home {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url("/images/place3.webp");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url("/images/bg/place3.webp");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -220,7 +340,7 @@ span {
 .services-col {
     height: 22rem;
     color: rgb(236, 68, 90);
-    background: url("/project/images/back-2.png");
+    background: url("/project/images/bg/back-2.png");
     background-color: lightgray;
     background-position: center;
     background-size: cover;
@@ -229,7 +349,12 @@ span {
     padding: 1.2rem;
     margin: 1.5rem;
 }
-
+.services-col:hover {
+    transition: .5s ease;
+    transform: translateY(-2rem);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
 .services-col i {
     padding: 2.2rem;
     border: none;

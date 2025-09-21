@@ -1,48 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Page</title>
-    <link rel="stylesheet" href="/style1.css">
-    <style>
-        .form{
-            height: 630px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Booking</title>
 
+  <style>
+    body {
+      background: url('/images/bg/register.jpeg') center/cover no-repeat;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    form {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .form {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .form h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    /* Two Column Layout */
+    .form-content {
+      display: flex;
+      gap: 90px;
+    }
+
+    .form-left,
+    .form-right {
+      flex: 1;
+    }
+
+    .form label {
+      display: block;
+      margin-top: 12px;
+      font-weight: 600;
+      color: #444;
+    }
+
+    .form input,
+    .form select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      transition: 0.3s ease;
+    }
+
+    .form input:focus,
+    .form select:focus {
+      border-color: #ff4081;
+      outline: none;
+      box-shadow: 0 0 6px rgba(255, 64, 129, 0.4);
+    }
+
+    .form h2 {
+      margin-top: 10px;
+      margin-bottom: 15px;
+      color: #444;
+      font-size: 1.2rem;
+      border-bottom: 2px solid #ff4081;
+      display: inline-block;
+      padding-bottom: 3px;
+    }
+
+    .form input[type="submit"],
+    .form input[type="button"] {
+      width: 100%;
+      background: #ff4081;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      transition: background 0.3s ease;
+    }
+
+    .form input[type="submit"]:hover,
+    .form input[type="button"]:hover {
+      background: #e73370;
+    }
+
+    .error {
+      color: red;
+      margin-bottom: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+.service-option1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two per row */
+  gap: 5px 10px; 
+  margin-top: 5px;
+  background-color: white;
+}
+
+.service-option {
+  display: flex;
+  align-items: center;
+}
+
+.service-option input[type="checkbox"] {
+  margin-right: 8px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .form-content {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
-<body style="background:url('/images/register.jpeg');background-position: center; background-size: cover; background-repeat: no-repeat;"> 
-<form action="/register" method="post" name="f1">
-   
+<body>
+
+  <form action="/register" method="POST">
     <div class="form">
-        <% if (errorMessage) { %>
-            <div class="error"><%= errorMessage %></div>
-        <% } %>
-        <br>
-        <h1>Registration Form</h1><br>
-        <label>Name :</label>
-        <input type="text" name="Name" placeholder="Name Here" id="Name">
-        <label>Mobile_no :</label>
-        <input type="tel" name="Mobile_no" size="10" placeholder="XXXXXXXXXX" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required><br>
-        <label>Wedding_Address:</label>
-        <input type="text" name="Wedding_Address" placeholder="Address" ><br>
-        <label>Wedding_date:</label>
-        <input type="Date" name="Wedding_date" placeholder=" Enter the Date here"><br>
-        <br>
-        <br>
-        <input type="submit" name="register" value="REGISTER"><br>
-        <a href="/index"><input type ="button" name="" value="Back to Home"></a>
-        
+      <h1>Wedding Booking</h1>
+
+      <div class="form-content">
+        <!-- Left Side -->
+        <div class="form-left">
+          <label for="Name">Name</label>
+          <input type="text" name="Name" required>
+
+          <label for="Mobile_no">Mobile Number</label>
+          <input type="text" name="Mobile_no" required>
+
+          <label for="Wedding_Address">Wedding Address</label>
+          <input type="text" name="Wedding_Address" required>
+
+          <label for="Wedding_date_From">Wedding Date From</label>
+          <input type="date" name="Wedding_date_From" required>
+
+          <label for="Wedding_date_To">Wedding Date To</label>
+          <input type="date" name="Wedding_date_To" required>
+        </div>
+
+        <!-- Right Side -->
+        <div class="form-right">
+          <label for="Venue">Venue</label>
+          <select name="Venue" aria-placeholder="select Venue..." required>
+          <option value="Banquet Hall">Banquet Hall</option>
+          <option value="Garden">Garden</option>
+          <option value="Beach Resort">Beach Resort</option>
+          <option value="Hotel">Hotel</option>
+          <option value="Farmhouse">Farmhouse</option>
+          <option value="Community Hall">Community Hall</option>
+          </select>
+
+
+          <label for="CardDesign">Card Design</label>
+          <select name="CardDesign">
+            <option value="Classic">Classic</option>
+            <option value="Modern">Modern</option>
+            <option value="Royal">Royal</option>
+          </select>
+
+          <h2>Services</h2>
+          <div class = "service-option1">
+
+          <div class="service-option">
+  <input type="checkbox" id="service1" name="Service" value="Photography">
+  <label for="service1">Photography</label>
+</div>
+
+<div class="service-option">
+  <input type="checkbox" id="service2" name="Service" value="Catering">
+  <label for="service2">Catering</label>
+</div>
+
+<div class="service-option">
+  <input type="checkbox" id="service3" name="Service" value="Decoration">
+  <label for="service3">Decoration</label>
+</div>
+
+<div class="service-option">
+  <input type="checkbox" id="service4" name="Service" value="Music">
+  <label for="service4">Music</label>
+</div></div>
+
+
+          <label for="No_of_Guests">No. of Guests</label>
+          <input type="number" name="No_of_Guests" required>
+        </div>
+      </div>
+
+      <input type="submit" value="Book Now">
+      <a href = "/index"><input type="button" value="Back"></a>
     </div>
+  </form>
 
-    <div>
-        <p id="length"></p>
-    </div>
-
-
-    
-   </form>
 </body>
 </html>

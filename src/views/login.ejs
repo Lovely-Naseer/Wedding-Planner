@@ -43,7 +43,7 @@ function valid(){
 </script>
 </head>
 
-<body style="background:url('/images/login.webp');background-position: center; background-size: cover; background-repeat: no-repeat;"> 
+<body style="background:url('/images/bg/login.webp');background-position: center; background-size: cover; background-repeat: no-repeat;"> 
 <form action="/login" method="post" name="f1">
 
 
@@ -58,7 +58,7 @@ function valid(){
         <p>Password :</p>
         <input type="password" name="Password" placeholder="Password Here" id="Password">
         <a href="#">Forgot Password..?</a><br>
-        <input type="checkbox" onclick="myfunction()">
+        <input type="radio" onclick="myfunction()">
         <input type="submit" name="" value="LOGIN" onclick="valid()"><br>
         Do You Not Have An Account ? <a href="/signup">SignUp</a>
         <br><br>
@@ -67,10 +67,7 @@ function valid(){
 
     <div>
         <p id="length"></p>
-    </div>
-
-
-    
+    </div>    
    </form>
 </body>
 </html>
