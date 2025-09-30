@@ -150,16 +150,16 @@
           <input type="text" name="Name" required>
 
           <label for="Mobile_no">Mobile Number</label>
-          <input type="text" name="Mobile_no" required>
+          <input type="tel"name="Mobile_no" placeholder="Enter Phone Number" id="Mobile_no" pattern="[0-9]{10}" required>
 
           <label for="Wedding_Address">Wedding Address</label>
           <input type="text" name="Wedding_Address" required>
 
           <label for="Wedding_date_From">Wedding Date From</label>
-          <input type="date" name="Wedding_date_From" required>
+          <input type="date" id="Wedding_date_From" name="Wedding_date_From" required>
 
           <label for="Wedding_date_To">Wedding Date To</label>
-          <input type="date" name="Wedding_date_To" required>
+          <input type="date" id="Wedding_date_To" name="Wedding_date_To" required>
         </div>
 
         <!-- Right Side -->
@@ -186,26 +186,24 @@
           <div class = "service-option1">
 
           <div class="service-option">
-  <input type="checkbox" id="service1" name="Service" value="Photography">
-  <label for="service1">Photography</label>
-</div>
+            <input type="checkbox" id="service1" name="Service" value="Photography">
+            <label for="service1">Photography&video</label>
+          </div>
 
-<div class="service-option">
-  <input type="checkbox" id="service2" name="Service" value="Catering">
-  <label for="service2">Catering</label>
-</div>
+          <div class="service-option">
+            <input type="checkbox" id="service2" name="Service" value="Catering">
+              <label for="service2">Cooking&Catering</label>
+          </div>
 
-<div class="service-option">
-  <input type="checkbox" id="service3" name="Service" value="Decoration">
-  <label for="service3">Decoration</label>
-</div>
+          <div class="service-option">
+            <input type="checkbox" id="service3" name="Service" value="Decoration">
+            <label for="service3">Decoration</label>
+          </div>
 
-<div class="service-option">
-  <input type="checkbox" id="service4" name="Service" value="Music">
-  <label for="service4">Music</label>
-</div></div>
-
-
+          <div class="service-option">
+            <input type="checkbox" id="service4" name="Service" value="Music">
+            <label for="service4">Music&DJ</label>
+          </div>
           <label for="No_of_Guests">No. of Guests</label>
           <input type="number" name="No_of_Guests" required>
         </div>
@@ -215,6 +213,14 @@
       <a href = "/index"><input type="button" value="Back"></a>
     </div>
   </form>
+  <script>
+  // Get today's date in YYYY-MM-DD format
+  const today = new Date().toISOString().split('T')[0];
+
+  // Set min attribute to today
+  document.getElementById('Wedding_date_From').setAttribute('min', today);
+  document.getElementById('Wedding_date_To').setAttribute('min', today);
+</script>
 
 </body>
 </html>

@@ -693,8 +693,6 @@ span {
     max-width: 900px;
     border-radius: 10px;
 }
-
-/* Venue Container */
 .venue_222 {
     display: grid; /* Use grid layout for strict control */
     grid-template-columns: repeat(3, 1fr); /* Two columns only */

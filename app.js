@@ -37,7 +37,8 @@ app.use(
   })
 );
 
-
+const authRoutes = require('./routes/authRoutes');
+app.use('/', authRoutes);
 // Use routes from external file
 app.use('/', indexRoutes);
 
@@ -48,47 +49,60 @@ app.get('/register', (req, res) => res.render('register', { errorMessage: null }
 app.get('/index', (req, res) => res.render('index'));
 app.get('/index0', (req, res) => res.render('index0'));
 app.get('/login', (req, res) => res.render('login', { errorMessage: null }));
+app.get('/otp', (req, res) => res.render('otp',{ errorMessage: null }));
+app.get('/newpassword', (req, res) => res.render('new_password',{ errorMessage: null }));
+app.get('/forget', (req, res) => res.render('forgot_password', { errorMessage: null }));
 
 
 //  signup form submission
 app.post('/signup', async (req, res) => {
-  const { UserName, Password, Confirm_Password } = req.body;
+  // Destructure all required fields
+  const { UserName, Password, Confirm_Password, Mobile_No, Gmail } = req.body;
 
+  // Validation regex
   const hasLetter = /[A-Za-z]/;
   const hasNumber = /[0-9]/;
   const isValidFormat = /^[A-Za-z\d]{6,15}$/;
 
-  if (!UserName || !Password) {
-    return res.render('signup', { errorMessage: 'Username & password are required' });
+  // Check required fields
+  if (!UserName || !Password || !Mobile_No || !Gmail) {
+    return res.render('signup', { errorMessage: 'All fields are required' });
   }
+
+  // Username validations
   if (!isValidFormat.test(UserName)) {
-    return res.render('signup', { errorMessage: 'Username 6-15 characters' });
+    return res.render('signup', { errorMessage: 'Username must be 6-15 characters' });
   }
   if (!hasLetter.test(UserName)) {
-    return res.render('signup', { errorMessage: 'Username at least one letter' });
+    return res.render('signup', { errorMessage: 'Username must contain at least one letter' });
   }
   if (!hasNumber.test(UserName)) {
-    return res.render('signup', { errorMessage: 'Username at least one number' });
+    return res.render('signup', { errorMessage: 'Username must contain at least one number' });
   }
+
+  // Password validations
   if (Password.length < 8 || Password.length > 20) {
-    return res.render('signup', { errorMessage: 'Password 8-20 characters' });
+    return res.render('signup', { errorMessage: 'Password must be 8-20 characters' });
   }
   if (Password !== Confirm_Password) {
     return res.render('signup', { errorMessage: 'Passwords do not match' });
   }
 
   try {
+    // Check if user already exists
     const existingUser = await User.findOne({ UserName });
     if (existingUser) {
-      return res.render('signup', { errorMessage: 'User Already Exist!' });
+      return res.render('signup', { errorMessage: 'User Already Exists!' });
     }
 
-    const newUser = new User({ UserName, Password });
+    // Create new user (password will be hashed automatically by schema pre-save hook)
+    const newUser = new User({ UserName, Password, Mobile_No, Gmail });
     await newUser.save();
+
     return res.redirect('/login');
   } catch (error) {
     console.error(error);
-    return res.render('signup', { errorMessage: 'Error To Signup User!' });
+    return res.render('signup', { errorMessage: 'Error signing up user!' });
   }
 });
 

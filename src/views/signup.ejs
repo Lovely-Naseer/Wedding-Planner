@@ -39,7 +39,7 @@ function lpage(){
 </script>
 <style>
     .form{
-        height: 580px;
+        height: 800px;
     }
     .error{
         margin-top: 10px;
@@ -58,6 +58,11 @@ function lpage(){
         <h1>SIGN-IN FORM</h1>
         <p>UserName :</p>
         <input type="text" name="UserName" placeholder="Name Here" id="UserName">
+        <p>Mobile_No :</p>
+        <span>+91</span>
+        <input type="tel"name="Mobile_No" placeholder="Enter Phone Number" id="Mobile_No" pattern="[0-9]{10}" required>
+        <p>Gmail :</p>
+        <input type="email" id="gmail" name="Gmail" placeholder="Enter Email" required />
         <p>Password :</p>
         <input type="password" name="Password" placeholder="Password Here" id="Password">
         <p>Confirm_Password :</p>
